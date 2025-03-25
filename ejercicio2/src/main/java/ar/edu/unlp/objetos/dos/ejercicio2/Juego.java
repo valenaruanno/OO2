@@ -12,7 +12,7 @@ public class Juego {
 	public String determinarGanador () {
 		Opcion opcion = this.jugador1.getOpcion().quienGana(this.jugador2.getOpcion());
 		if (opcion == null)
-			return"Empate";
+			return"empate";
 		else 
 			return opcion.getSoy();
 	}
