@@ -1,0 +1,13 @@
+1) Podria mejorarlo haciendo mas expresivo el nombre del metodo:
+    - limiteDeCredito.
+    - montoFacturadoAlClienteEnRango.
+    - montoCobradoAlClienteEnRango.
+
+1.2) Se realizo un cambio para mover los aspectos entre objetos y asi mejorar la asignacion de responsabilidades.Lo considero necesario por que ademas, 
+    evita la envidia de atributos al llamar al metodo getParticipantes.
+
+1.3) El code smell que detecto es el de composicion de metodos. Se puede 
+    corregir usando varios extracts methods para:
+    - Calcular el total de edades.
+    - Calcular el total de salarios.
+    - Calcular el promedio de edades. 

@@ -1,0 +1,150 @@
+i) Composicion de metodo
+ii) El refactoring que lo corrije es Extract Method.
+iii) 
+
+public class EmpleadoTemporario {
+    public String nombre;
+    public String apellido;
+    public double sueldoBasico = 0;
+    public double horasTrabajadas = 0;
+    public int cantidadHijos = 0;
+
+    public double retornoDeHorasTrabajadas (){
+        return this.horasTrabajadas * 500;
+    }
+
+    public int retornoPorCantidadHijos (){
+        return this.cantidadHijos * 1000;
+    }
+
+    public double descuentoDelTrecePorciento (){
+        return this.sueldoBasico * 0.13;
+    }
+
+    public double sueldoBasico (){
+        return this.sueldoBasico 
+            + this.retornoDeHorasTrabajadas() 
+            + this.retornoPorCantidadHijos()
+            - this.descuentoDelTrecePorciento(); 
+    }
+}
+
+public class EmpleadoPlanta (){
+    public String nombre;
+    public String apellido;
+    public double sueldoBasico = 0;
+    public int cantidadHijos = 0;
+
+    public inte retornoPorCantidadDeHijos (){
+        return this.cantidadHijos * 2000;
+    }
+
+    public double descuentoDelTrecePorciento (){
+        return this.sueldoBasico * 0.13;
+    }
+
+    public double sueldo (){
+        return this.sueldoBasico 
+            + this.retornoPorCantidadDeHijos();
+            - this.descuentoDelTrecePorciento();
+    }
+}
+
+public class EmpleadoPasante (){
+    public String nombre;
+    public String apellido;
+    public double sueldoBasico = 0;
+    
+    public double descuentoDelTrecePorciento(){
+        return this.sueldoBasico * 0.13;
+    }
+
+    public double sueldo (){
+        return this.sueldoBasico - this.descuentoDelTrecePorciento();
+    }
+}
+
+
+2.2)
+i) Mover aspectos entre objetos, envidia de atributos y clase de datos
+    (jugador).
+ii) El refactoring que lo corrije es Move Method.
+iii) 
+
+public class Juego (){
+
+    public void incrementar (Jugador j){
+        j.incrementarPuntuacion(100);
+    }
+
+    public void decrementar (Jugador j){
+        j.decrementarPuntuacion(50);
+    }
+}
+
+public class Jugador (){
+    public String nombre;
+    public String apellido;
+    public int puntuacion = 0;
+
+    public void incrementarPuntuacion(int cuanto){
+        this.puntuacion += cuanto;
+    }
+
+    public void decrementarPuntuacion(int cuanto){
+        this.puntuacion -= cuanto;
+    }
+}
+
+
+2.3)
+i) Metodo largo.
+ii) El refactoring que lo corrije es Extract Method.
+iii)
+
+public List<Post> filtrarPostsOtrosUsuarios (List<Post> posts, Usuario user){
+    List<Post> postsOtrosUsuarios = new ArrayList<Post>();
+    for (Post post : this.posts) {
+        if (!post.getUsuario().equals(user)) {
+            postsOtrosUsuarios.add(post);
+        }
+    }
+
+    return postsOtrosUsuarios;
+}
+
+public void ordenarPostsPorFecha (List<Post> postsOtrosUsuarios){
+    for (int i = 0; i < postsOtrosUsuarios.size(); i++) {
+        int masNuevo = i;
+        for (int j = i + 1; j < postsOtrosUsuarios.size(); j++) {
+            if (postsOtrosUsuarios.get(j).getFecha().isAfter(postsOtrosUsuarios.get(masNuevo).getFecha())) {
+                masNuevo = j;
+            }
+        }
+        Post unPost = postsOtrosUsuarios.set(i, postsOtrosUsuarios.get(masNuevo));
+        postsOtrosUsuarios.set(masNuevo, unPost);
+    }
+}
+
+public List<Post> tomarUltimosPosts (List<Post> postsOtrosUsuarios, int cantidad){
+    List<Post> ultimosPosts = new ArrayList<Post>();
+    int index = 0;
+    Iterator<Post> postIterator = postsOtrosUsuarios.iterator();
+    while (postIterator.hasNext() && index < cantidad) {
+        ultimosPosts.add(postIterator.next());
+    }
+}
+
+public List<Post> ultimosPosts (Usuario user, int cantidad){
+    List<Post> postsOtrosUsuarios = new ArrayList<Post>();
+    postsOtrosUsuarios = filtrarPostsOtrosUsuarios (this.posts, user);
+
+    // Ordena los posts por fecha
+    this.ordenarPostsPorFecha (postsOtrosUsuarios);
+
+    List<Post> ultimosPosts = new ArrayList<Post>();
+    ultimosPosts = tomarUltimosPosts (postsOtrosUsuarios, cantidad);
+
+    return ultimosPosts;
+
+}
