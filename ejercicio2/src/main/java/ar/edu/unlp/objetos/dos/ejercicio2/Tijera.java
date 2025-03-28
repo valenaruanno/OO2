@@ -1,14 +1,9 @@
 package ar.edu.unlp.objetos.dos.ejercicio2;
 
-public class Tijera implements Opcion {
-	private String soy;
+public class Tijera extends Opcion {
 	
 	public Tijera (String soy) {
-		this.soy = soy;
-	}
-	
-	public String getSoy () {
-		return this.soy;
+		super(soy);
 	}
 	
 	public Opcion quienGana(Opcion otra) {

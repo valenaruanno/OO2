@@ -1,14 +1,9 @@
 package ar.edu.unlp.objetos.dos.ejercicio2;
 
-public class Papel implements Opcion {
-	private String soy;
+public class Papel extends Opcion {
 	
 	public Papel (String soy) {
-		this.soy = soy;
-	}
-	
-	public String getSoy () {
-		return this.soy;
+		super(soy);
 	}
 	
 	public Opcion quienGana(Opcion otra) {

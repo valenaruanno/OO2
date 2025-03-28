@@ -1,6 +1,15 @@
 package ar.edu.unlp.objetos.dos.ejercicio2;
 
-public interface Opcion {
-	public String getSoy ();
-	public Opcion quienGana (Opcion opcion);
+public abstract class Opcion {
+	private String soy;
+	
+	public Opcion (String soy) {
+		this.soy = soy;
+	}
+	
+	
+	public String getSoy () {
+		return this.soy;
+	}
+	public abstract Opcion quienGana (Opcion opcion);
 }
