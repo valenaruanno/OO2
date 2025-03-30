@@ -148,3 +148,160 @@ public List<Post> ultimosPosts (Usuario user, int cantidad){
     return ultimosPosts;
 
 }
+
+
+2.4) 
+i) Mover aspetos entre objetos y envidia de atributos.
+ii) El refactoring que lo corrije es Move Method.
+iii)
+
+public class ItemCarrito{
+    private Producto producto;
+    private int cantidad;
+
+    public Producto getProducto (){
+        return this.producto;
+    }
+
+    //removi el metodo getCantidad() por que no tenia sentido, lo aclaro?
+
+    public double getTotal (){
+        return producto.getPrecio() * this.cantidad;
+    }
+}
+
+public class Carrito{
+    private List<ItemCarrito> items;
+
+    public double total (){
+        return this.items.stream()
+            .mapToDouble(item -> item.getTotal()).sum();
+    }
+}
+
+
+2.5)
+i) Mover aspectos entre objetos y envidia de atributos, clase de datos.
+ii) El refactoring que lo corrije es Move Method.
+iii)
+
+public class Cliente{
+    private Direccion direccion; //lo agrego por que no estaba declarado
+
+    public String getDireccionFormateada(){
+        return this.direccion.toString();
+    }
+}
+
+public class Direccion{
+    private String localidad;    //aparecian todos publicos. esta bien?
+    private String calle;       //En el ejercicio aparecian sus getters
+    private String numero;     // perono estaban declarados. Indico algo?
+    private String departamento;
+
+    public String toString (){
+        return this.localidad + ", " +
+                 this.calle + ", " +
+                 this.numero + ", " +
+                 this.departamento;
+    }
+}
+
+
+2.6)
+i) Swithc statements 
+ii) El refactoring que lo corrije es Replace conditional with polimorfism.
+iii)
+
+public class Usuario{
+    private String nombre;
+    private int telefono;
+    private TipoSuscripcion tipoSuscripcion;
+    private String email;
+    
+    public double calcularCostoPelicula(Pelicula pelicula){
+        return this.tipoSuscripcion.calcularCosto(pelicula);
+    }
+}
+
+public class Pelicula{
+    private String nombre;
+    private String genero;
+    private Date fechaEstreno;
+    private Double costo;
+
+    public double getCosto{
+        return this.costo;
+    }
+
+    public double calcularCargoExtraPorEstreno(){
+        return (ChronoUnit.DAYS.between(this.fechaEstreno, LocalDate.now())) 
+            > 30 ? 0;
+    }
+}
+
+public Interface TipoSuscripcion{
+    public abstract calcularCosto (pelicula);
+}
+
+public class Basico implements TipoSuscripcion{
+    public calcularCosto(Pelicula pelicula){
+        return pelicula.getCosto() 
+            + pelicula.calcularCargoExtraPorEstreno();
+    }
+}
+
+public class Familia implements TipoSuscripcion{
+    public calcularCosto(Pelicula pelicula){
+        return (pelicula.getCosto() 
+            + pelicula.calcularCargoExtraPorEstreno()) * 0.90;
+    }
+}
+
+public class Plus implements TipoSuscripcion{
+    public calcularCosto(Pelicula pelicula){
+        return pelicula.getCosto() 
+    }
+}
+
+public class Premium implements TipoSuscripcion{
+    public calcularCosto(Pelicula pelicula){
+        return pelicula.getCosto() * 0.75;
+    }
+}
+
+i) Mover aspectos entre objetos.
+ii) El refactoring que lo corrije es Move Method.
+iii)
+
+public class Pelicula{
+    private String nombre;
+    private String genero;
+    private Date fechaEstreno;
+    private Double costo;
+
+    public double getCosto{
+        return this.costo;
+    }
+
+    public double calcularCargoExtraPorEstreno(){
+        return (ChronoUnit.DAYS.between(this.fechaEstreno, LocalDate.now())) 
+            > 30 ? 0;
+    }
+
+    public double calcularCostoConCargo(){
+        return this.costo + this.calcularCargoExtraPorEstreno;
+    }
+}
+
+public class Basico implements TipoSuscripcion{
+    public calcularCosto(Pelicula pelicula){
+        return pelicula.calcularCostoConCargo();
+    }
+}
+
+public class Familia implements TipoSuscripcion{
+    public calcularCosto(Pelicula pelicula){
+        return (pelicula.calcularCostoConCargo()) * 0.90;
+    }
+}
