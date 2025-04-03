@@ -1,0 +1,227 @@
+2.3)
+i) Metodo largo.
+ii) El refactoring que lo corrije es Extract Method.
+iii)
+
+
+public List<Post> filtrarPostsOtrosUsuarios (List<Post> posts, Usuario user){
+    List<Post> postsOtrosUsuarios = new ArrayList<Post>();
+    for (Post post : this.posts) {
+        if (!post.getUsuario().equals(user)) {
+            postsOtrosUsuarios.add(post);
+        }
+    }
+
+    return postsOtrosUsuarios;
+}
+
+public List<Post> ultimosPosts(Usuario user, int cantidad) {
+        
+    List<Post> postsOtrosUsuarios = filtrarPostsOtrosUsuarios (this.posts, user);
+
+   // ordena los posts por fecha
+   for (int i = 0; i < postsOtrosUsuarios.size(); i++) {
+       int masNuevo = i;
+       for(int j= i +1; j < postsOtrosUsuarios.size(); j++) {
+           if (postsOtrosUsuarios.get(j).getFecha().isAfter(
+     postsOtrosUsuarios.get(masNuevo).getFecha())) {
+              masNuevo = j;
+           }    
+       }
+      Post unPost = postsOtrosUsuarios.set(i,postsOtrosUsuarios.get(masNuevo));
+      postsOtrosUsuarios.set(masNuevo, unPost);    
+   }
+        
+    List<Post> ultimosPosts = new ArrayList<Post>();
+    int index = 0;
+    Iterator<Post> postIterator = postsOtrosUsuarios.iterator();
+    while (postIterator.hasNext() &&  index < cantidad) {
+        ultimosPosts.add(postIterator.next());
+    }
+    return ultimosPosts;
+}
+
+i) Metodo largo y comentarios
+ii) El refactoring que lo corrije es Extract Method.
+iii)
+
+public List<Post> filtrarPostsOtrosUsuarios (List<Post> posts, Usuario user){
+    List<Post> postsOtrosUsuarios = new ArrayList<Post>();
+    for (Post post : this.posts) {
+        if (!post.getUsuario().equals(user)) {
+            postsOtrosUsuarios.add(post);
+        }
+    }
+
+    return postsOtrosUsuarios;
+}
+
+public void ordenarPostsPorFecha (List<Post> postsOtrosUsuarios){
+    for (int i = 0; i < postsOtrosUsuarios.size(); i++) {
+        int masNuevo = i;
+        for (int j = i + 1; j < postsOtrosUsuarios.size(); j++) {
+            if (postsOtrosUsuarios.get(j).getFecha().isAfter(postsOtrosUsuarios.get(masNuevo).getFecha())) {
+                masNuevo = j;
+            }
+        }
+        Post unPost = postsOtrosUsuarios.set(i, postsOtrosUsuarios.get(masNuevo));
+        postsOtrosUsuarios.set(masNuevo, unPost);
+    }
+}
+
+public List<Post> ultimosPosts(Usuario user, int cantidad) {
+        
+    List<Post> postsOtrosUsuarios = filtrarPostsOtrosUsuarios (this.posts, user);
+
+    this.ordenarPostsPorFecha (postsOtrosUsuarios);
+        
+    List<Post> ultimosPosts = new ArrayList<Post>();
+    int index = 0;
+    Iterator<Post> postIterator = postsOtrosUsuarios.iterator();
+    while (postIterator.hasNext() &&  index < cantidad) {
+        ultimosPosts.add(postIterator.next());
+    }
+    return ultimosPosts;
+}
+
+i) Metodo Largo
+ii) El refactoring que lo corrije es Extract Method.
+iii)
+
+public List<Post> filtrarPostsOtrosUsuarios (List<Post> posts, Usuario user){
+    List<Post> postsOtrosUsuarios = new ArrayList<Post>();
+    for (Post post : this.posts) {
+        if (!post.getUsuario().equals(user)) {
+            postsOtrosUsuarios.add(post);
+        }
+    }
+
+    return postsOtrosUsuarios;
+}
+
+public void ordenarPostsPorFecha (List<Post> postsOtrosUsuarios){
+    for (int i = 0; i < postsOtrosUsuarios.size(); i++) {
+        int masNuevo = i;
+        for (int j = i + 1; j < postsOtrosUsuarios.size(); j++) {
+            if (postsOtrosUsuarios.get(j).getFecha().isAfter(postsOtrosUsuarios.get(masNuevo).getFecha())) {
+                masNuevo = j;
+            }
+        }
+        Post unPost = postsOtrosUsuarios.set(i, postsOtrosUsuarios.get(masNuevo));
+        postsOtrosUsuarios.set(masNuevo, unPost);
+    }
+}
+
+public List<Post> tomarUltimosPosts (List<Post> postsOtrosUsuarios, int cantidad){
+    List<Post> ultimosPosts = new ArrayList<Post>();
+    int index = 0;
+    Iterator<Post> postIterator = postsOtrosUsuarios.iterator();
+    while (postIterator.hasNext() && index < cantidad) {
+        ultimosPosts.add(postIterator.next());
+    }
+}
+public List<Post> ultimosPosts(Usuario user, int cantidad) {
+    List<Post> postsOtrosUsuarios = filtrarPostsOtrosUsuarios (this.posts, user);
+    this.ordenarPostsPorFecha (postsOtrosUsuarios);
+    List<Post> ultimosPosts = tomarUltimosPosts (postsOtrosUsuarios, cantidad);
+    return ultimosPosts;
+
+}
+
+i) Reinventando la rueda en el metodo filtrarPostsUsuarios().
+ii) Agregar funciones de mas alto nivel para reemplazar las funciones inventadas.
+iii)
+
+
+public List<Post> filtrarPostsOtrosUsuarios (List<Post> posts, Usuario user){
+    List<Post> postsOtrosUsuarios = this.posts.stream().filter(post -> !post.getUsuario().equals(user)).collect(Collectors.toList());
+    return postsOtrosUsuarios;
+}
+
+public void ordenarPostsPorFecha (List<Post> postsOtrosUsuarios){
+    for (int i = 0; i < postsOtrosUsuarios.size(); i++) {
+        int masNuevo = i;
+        for (int j = i + 1; j < postsOtrosUsuarios.size(); j++) {
+            if (postsOtrosUsuarios.get(j).getFecha().isAfter(postsOtrosUsuarios.get(masNuevo).getFecha())) {
+                masNuevo = j;
+            }
+        }
+        Post unPost = postsOtrosUsuarios.set(i, postsOtrosUsuarios.get(masNuevo));
+        postsOtrosUsuarios.set(masNuevo, unPost);
+    }
+}
+
+public List<Post> tomarUltimosPosts (List<Post> postsOtrosUsuarios, int cantidad){
+    List<Post> ultimosPosts = new ArrayList<Post>();
+    int index = 0;
+    Iterator<Post> postIterator = postsOtrosUsuarios.iterator();
+    while (postIterator.hasNext() && index < cantidad) {
+        ultimosPosts.add(postIterator.next());
+    }
+}
+
+public List<Post> ultimosPosts (Usuario user, int cantidad){
+    List<Post> postsOtrosUsuarios = filtrarPostsOtrosUsuarios (this.posts, user);
+    this.ordenarPostsPorFecha (postsOtrosUsuarios);
+    List<Post> ultimosPosts = tomarUltimosPosts (postsOtrosUsuarios, cantidad);
+    return ultimosPosts;
+}
+
+
+i) Reinventando la rueda en el metodo ordenarPostsPorFecha().
+ii) Agregar funciones de mas alto nivel para reemplazar las funciones inventadas.
+iii)
+
+
+public List<Post> filtrarPostsOtrosUsuarios (List<Post> posts, Usuario user){
+    List<Post> postsOtrosUsuarios = this.posts.stream().filter(post -> !post.getUsuario().equals(user)).collect(Collectors.toList());
+    return postsOtrosUsuarios;
+}
+
+public void ordenarPostsPorFecha (List<Post> postsOtrosUsuarios){
+    postsOtrosUsuarios.stream().sorted(Comparator.comparing(Post:: GetFecha)).reversed();
+}
+
+public List<Post> tomarUltimosPosts (List<Post> postsOtrosUsuarios, int cantidad){
+    List<Post> ultimosPosts = new ArrayList<Post>();
+    int index = 0;
+    Iterator<Post> postIterator = postsOtrosUsuarios.iterator();
+    while (postIterator.hasNext() && index < cantidad) {
+        ultimosPosts.add(postIterator.next());
+    }
+}
+
+public List<Post> ultimosPosts (Usuario user, int cantidad){
+    List<Post> postsOtrosUsuarios = filtrarPostsOtrosUsuarios (this.posts, user);
+    this.ordenarPostsPorFecha (postsOtrosUsuarios);
+    List<Post> ultimosPosts = tomarUltimosPosts (postsOtrosUsuarios, cantidad);
+    return ultimosPosts;
+
+}
+
+
+i) Reinventando la rueda en el metodo tomarUltimosPosts().
+ii) Agregar funciones de mas alto nivel para reemplazar las funciones inventadas.
+iii)
+
+
+public List<Post> filtrarPostsOtrosUsuarios (List<Post> posts, Usuario user){
+    List<Post> postsOtrosUsuarios = this.posts.stream().filter(post -> !post.getUsuario().equals(user)).collect(Collectors.toList());
+    return postsOtrosUsuarios;
+}
+
+public void ordenarPostsPorFecha (List<Post> postsOtrosUsuarios){
+    postsOtrosUsuarios.stream().sorted(Comparator.comparing(Post:: GetFecha)).reversed();
+}
+
+public List<Post> tomarUltimosPosts (List<Post> postsOtrosUsuarios, int cantidad){
+    return List<Post> ultimosPosts = postsOtrosUsuarios.stream().limited(cantidad).collect(Collectors.toList());
+}
+
+public List<Post> ultimosPosts (Usuario user, int cantidad){
+    List<Post> postsOtrosUsuarios = filtrarPostsOtrosUsuarios (this.posts, user);
+    this.ordenarPostsPorFecha (postsOtrosUsuarios);
+    List<Post> ultimosPosts = tomarUltimosPosts (postsOtrosUsuarios, cantidad);
+    return ultimosPosts;
+
+}
