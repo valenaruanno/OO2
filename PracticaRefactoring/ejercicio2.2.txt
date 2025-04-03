@@ -1,0 +1,89 @@
+i) Mover aspectos entre objetos, envidia de atributos y clase de datos
+    (jugador).
+ii) El refactoring que lo corrije es Move Method.
+iii) 
+
+public class Juego (){
+
+    public void incrementar (Jugador j){
+        j.incrementarPuntuacion(100);
+    }
+
+    public void decrementar (Jugador j){
+        j.puntuacion = j.puntuacion - 50;
+    }
+}
+
+public class Jugador (){
+    public String nombre;
+    public String apellido;
+    public int puntuacion = 0;
+
+    public void incrementarPuntuacion(int cuanto){
+        this.puntuacion += cuanto;
+    }
+}
+
+
+i) Mover aspectos entre objetos, envidia de atributos y clase de datos
+    (jugador).
+ii) El refactoring que lo corrije es Move Method.
+iii)
+
+public class Juego (){
+
+    public void incrementar (Jugador j){
+        j.incrementarPuntuacion(100);
+    }
+
+    public void decrementar (Jugador j){
+        j.decrementarPuntuacion(50);
+    }
+}
+
+public class Jugador (){
+    public String nombre;
+    public String apellido;
+    public int puntuacion = 0;
+
+    public void incrementarPuntuacion(int cuanto){
+        this.puntuacion += cuanto;
+    }
+
+    public void decrementarPuntuacion(int cuanto){
+        this.puntuacion -= cuanto;
+    }
+}
+
+
+Code smell
+i) Atributos publicos en la clase Jugador. Esto viola el encapsulamiento.
+ii) Pasarlas a privadas (Esto altera el comportamiento del programa).
+iii)
+
+public class Juego (){
+
+    public void incrementar (Jugador j){
+        j.incrementarPuntuacion(100);
+    }
+
+    public void decrementar (Jugador j){
+        j.decrementarPuntuacion(50);
+    }
+}
+
+public class Jugador (){
+    private String nombre;
+    private String apellido;
+    private int puntuacion = 0;
+
+    public void incrementarPuntuacion(int cuanto){
+        this.puntuacion += cuanto;
+    }
+
+    public void decrementarPuntuacion(int cuanto){
+        this.puntuacion -= cuanto;
+    }
+}
+
+
