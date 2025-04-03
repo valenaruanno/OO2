@@ -1,33 +1,3 @@
-2.4) 
-i) Mover aspetos entre objetos y envidia de atributos.
-ii) El refactoring que lo corrije es Move Method.
-iii)
-
-public class ItemCarrito{
-    private Producto producto;
-    private int cantidad;
-
-    public Producto getProducto (){
-        return this.producto;
-    }
-
-    //removi el metodo getCantidad() por que no tenia sentido, lo aclaro?
-
-    public double getTotal (){
-        return producto.getPrecio() * this.cantidad;
-    }
-}
-
-public class Carrito{
-    private List<ItemCarrito> items;
-
-    public double total (){
-        return this.items.stream()
-            .mapToDouble(item -> item.getTotal()).sum();
-    }
-}
-
-
 2.5)
 i) Mover aspectos entre objetos y envidia de atributos, clase de datos.
 ii) El refactoring que lo corrije es Move Method.
