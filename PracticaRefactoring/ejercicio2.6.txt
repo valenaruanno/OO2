@@ -1,33 +1,4 @@
-2.5)
-i) Mover aspectos entre objetos y envidia de atributos, clase de datos.
-ii) El refactoring que lo corrije es Move Method.
-iii)
-
-public class Cliente{
-    private Direccion direccion; //lo agrego por que no estaba declarado
-
-    public String getDireccionFormateada(){
-        return this.direccion.toString();
-    }
-}
-
-public class Direccion{
-    private String localidad;    //aparecian todos publicos. esta bien?
-    private String calle;       //En el ejercicio aparecian sus getters
-    private String numero;     // perono estaban declarados. Indico algo?
-    private String departamento;
-
-    public String toString (){
-        return this.localidad + ", " +
-                 this.calle + ", " +
-                 this.numero + ", " +
-                 this.departamento;
-    }
-}
-
-
-2.6)
-i) Swithc statements 
+i) Switch statements 
 ii) El refactoring que lo corrije es Replace conditional with polimorfism.
 iii)
 
