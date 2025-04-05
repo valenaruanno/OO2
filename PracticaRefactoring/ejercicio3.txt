@@ -18,6 +18,28 @@ public class Document {
 // Resto del código que no importa
 }
 
+
+SOLUCION 1:
+i) Codigo duplicado. 
+ii) 
+
+public class Document {
+    List<String> words;
+  
+    public long characterCount() {
+ 	    long count = this.words
+        .stream()
+        .mapToLong(w -> w.length())
+        .sum();
+    	return count;
+	}
+
+    public Long calculateAvg() {
+    	return this.characterCount() / this.words.size();
+	}
+// Resto del código que no importa
+}
+
 i) Code smell: Reinventando la rueda. El refactoring que lo soluciona es agregar una funcion de mas alto nivel.
 ii) 
 
@@ -39,4 +61,8 @@ public class Document {
 // Resto del código que no importa
 }
 
-3) Cuando se quiere 
+3) El problema del codigo original al calcular las estadisticas, es que si el numero de palabras de la lista era 0, 
+    se iba a dar el caso que tenia que dividir por 0 palabras, y esto generaria un error. Luego de hacer refactoring, 
+    usamos una funcion de mas alto nivel, para que nos permita manejar estos casos, sin producir errores. Usando la 
+    funcion de stream .average().orElse(0); Tomando la definicion de refactoring estrictamente, quiza no seria 
+    refactoring ya que modifica cierto comportamiento del codigo, ya que ahora no tirar error en ese caso.
