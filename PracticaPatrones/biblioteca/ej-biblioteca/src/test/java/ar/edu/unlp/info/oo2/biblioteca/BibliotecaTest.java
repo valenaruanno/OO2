@@ -11,12 +11,14 @@ public class BibliotecaTest {
 	private Biblioteca biblioteca;
 	private Socio s1;
 	private Socio s2;
+	private JsonSimpleAdapter jSa;
 	
 	@BeforeEach
 	public void setUp() {
 		biblioteca = new Biblioteca();
 		s1 = new Socio("Arya Stark", "needle@stark.com", "5234-5");
 		s2 = new Socio("Tyron Lannister", "tyron@thelannisters.com", "2345-2");
+		jSa = new JsonSimpleAdapter ();
 	}
 
 	@Test
@@ -40,5 +42,15 @@ public class BibliotecaTest {
 				+ "	}\n"
 				+ "]";
 		assertEquals(aux, biblioteca.exportarSocios());
+	}
+	
+	@Test
+	public void exportarSociosConJsonSimpleTest() {
+		biblioteca.setExporter(jSa);
+		biblioteca.agregarSocio(s1);
+		biblioteca.agregarSocio(s2);
+		assertEquals("[{\"legajo\":\"5234-5\",\"nombre\":\"Arya Stark\",\"email\""
+				+ ":\"needle@stark.com\"},{\"legajo\":\"2345-2\",\"nombre\":\"Tyron "
+				+ "Lannister\",\"email\":\"tyron@thelannisters.com\"}]", biblioteca.exportarSocios());
 	}
 }
