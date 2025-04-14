@@ -1,38 +1,40 @@
 package ar.edu.unlp.objetos.dos.ejercicio2;
 
-public class Piedra implements Objeto{
+public class Lagarto implements Objeto{
 	
-	public Piedra() {
+	public Lagarto() {
 		
 	}
 
 	@Override
 	public String jugarContra(Objeto objeto) {
-		return objeto.jugarContraPiedra();
+		return objeto.jugarContraLagarto();
 	}
 
 	@Override
 	public String jugarContraTijera() {
-		return "Gana piedra";
+		return "Gana tijera";
 	}
 
 	@Override
 	public String jugarContraPapel() {
-		return "Gana papel";
+		return "Gana lagarto";
 	}
 
 	@Override
 	public String jugarContraPiedra() {
-		return "Empate";
-	}
-
-	@Override
-	public String jugarContraLagarto() {
 		return "Gana piedra";
 	}
 
 	@Override
-	public String jugarContraSpock() {
-		return "Gana spock";
+	public String jugarContraLagarto() {
+		return "Empate";
 	}
+
+	@Override
+	public String jugarContraSpock() {
+		return "Gana lagarto";
+	}
+	
+	
 }

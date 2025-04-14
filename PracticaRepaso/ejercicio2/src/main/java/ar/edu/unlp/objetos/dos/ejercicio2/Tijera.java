@@ -1,20 +1,41 @@
 package ar.edu.unlp.objetos.dos.ejercicio2;
 
-public class Tijera extends Opcion {
-	
-	public Tijera (String soy) {
-		super(soy);
+public class Tijera implements Objeto {
+
+	public Tijera() {
+		
 	}
 	
-	public Opcion quienGana(Opcion otra) {
-		if (otra.getSoy().equals("tijera"))
-			return null;
-		else {
-			if (otra.getSoy().equals("piedra"))
-				return otra;
-			else 
-				return this;
-		}
+	@Override
+	public String jugarContra(Objeto objeto) {
+		return objeto.jugarContraTijera();
 	}
 
+	@Override
+	public String jugarContraTijera() {
+		return "Empate";
+	}
+
+	@Override
+	public String jugarContraPapel() {
+		return "Gana tijera";
+	}
+
+	@Override
+	public String jugarContraPiedra() {
+		return "Gana piedra";
+	}
+
+	@Override
+	public String jugarContraLagarto() {
+		return "Gana tijera";
+	}
+
+	@Override
+	public String jugarContraSpock() {
+		return "Gana spock";
+	}
+	
+	
+	
 }
