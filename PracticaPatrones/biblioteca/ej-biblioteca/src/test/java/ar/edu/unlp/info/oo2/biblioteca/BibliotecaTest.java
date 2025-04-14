@@ -12,6 +12,7 @@ public class BibliotecaTest {
 	private Socio s1;
 	private Socio s2;
 	private JsonSimpleAdapter jSa;
+	private JacksonAdapter j;
 	
 	@BeforeEach
 	public void setUp() {
@@ -19,6 +20,7 @@ public class BibliotecaTest {
 		s1 = new Socio("Arya Stark", "needle@stark.com", "5234-5");
 		s2 = new Socio("Tyron Lannister", "tyron@thelannisters.com", "2345-2");
 		jSa = new JsonSimpleAdapter ();
+		j = new JacksonAdapter ();
 	}
 
 	@Test
@@ -52,5 +54,15 @@ public class BibliotecaTest {
 		assertEquals("[{\"legajo\":\"5234-5\",\"nombre\":\"Arya Stark\",\"email\""
 				+ ":\"needle@stark.com\"},{\"legajo\":\"2345-2\",\"nombre\":\"Tyron "
 				+ "Lannister\",\"email\":\"tyron@thelannisters.com\"}]", biblioteca.exportarSocios());
+	}
+	
+	@Test
+	public void exportarSociosConJacksonTest() {
+		biblioteca.setExporter(j);
+		biblioteca.agregarSocio(s1);
+		biblioteca.agregarSocio(s2);
+		assertEquals("[{\"nombre\":\"Arya Stark\",\"legajo\":\"5234-5\",\"email\""
+				+ ":\"needle@stark.com\"},{\"nombre\":\"Tyron Lannister\",\"legajo\""
+				+ ":\"2345-2\",\"email\":\"tyron@thelannisters.com\"}]", biblioteca.exportarSocios());
 	}
 }
