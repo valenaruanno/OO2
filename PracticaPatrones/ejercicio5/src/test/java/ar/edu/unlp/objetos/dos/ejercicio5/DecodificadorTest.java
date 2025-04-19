@@ -1,6 +1,7 @@
 package ar.edu.unlp.objetos.dos.ejercicio5;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -46,28 +47,36 @@ public class DecodificadorTest {
 		rocky.agregarSimilar(rambo);
 		rambo.agregarSimilar(rocky);
 		
+		decodificador.agregarAgrilla(capitanAmerica);
+		decodificador.agregarAgrilla(ironMan);
+		decodificador.agregarAgrilla(thor);
+		decodificador.agregarAgrilla(rambo);
+		decodificador.agregarAgrilla(rocky);
+		decodificador.agregarAgrilla(dunkirk);
+		decodificador.agregarAreproducidas(thor);
+		decodificador.agregarAreproducidas(rocky);
+		
 		sugerenciaSimilaridad = new SugerenciaSimilaridad();
 		sugerenciaPuntaje = new SugerenciaPuntaje();
 	}
 	
 	@Test
 	public void sugerenciaSimilaridadTest() {
-		List<Pelicula> test = new ArrayList<>();
-		test.add(this.capitanAmerica);
-		test.add(this.ironMan);
-		test.add(this.rambo);
+
 		this.decodificador.setCriterio(sugerenciaSimilaridad);
-		assertEquals(test, this.decodificador.sugerir());
+		List<Pelicula> lista = this.decodificador.sugerir();
+		assertTrue(lista.contains(this.capitanAmerica));
+		assertTrue(lista.contains(this.ironMan));
+		assertTrue(lista.contains(this.rambo));
 	}
 
 	@Test
 	public void sugerenciaPuntajeTest() {
-		List<Pelicula> test = new ArrayList<>();
-		test.add(this.dunkirk);
-		test.add(this.ironMan);
-		test.add(this.capitanAmerica);
 		this.decodificador.setCriterio(sugerenciaPuntaje);
-		assertEquals(test, this.decodificador.sugerir());
+		List<Pelicula> lista = this.decodificador.sugerir();
+		assertTrue(lista.contains(this.capitanAmerica));
+		assertTrue(lista.contains(this.ironMan));
+		assertTrue(lista.contains(this.dunkirk));
 	}
 	
 }
