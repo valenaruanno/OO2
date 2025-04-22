@@ -1,6 +1,6 @@
 package ar.edu.unlp.objetos.dos.ejercicio6;
 
-public class Provisoria extends Estado{	
+public class Provisoria implements Estado{	
 	public Provisoria () {
 		
 	}

@@ -1,6 +1,6 @@
 package ar.edu.unlp.objetos.dos.ejercicio6;
 
-public class Definitiva extends Estado{
+public class Definitiva implements Estado{
 
 	public Definitiva () {
 		

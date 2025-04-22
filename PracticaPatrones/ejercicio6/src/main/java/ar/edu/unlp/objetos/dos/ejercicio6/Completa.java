@@ -1,6 +1,6 @@
 package ar.edu.unlp.objetos.dos.ejercicio6;
 
-public class Completa extends Estado{
+public class Completa implements Estado{
 
 	public Completa () {
 		
