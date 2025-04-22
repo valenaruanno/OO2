@@ -8,7 +8,7 @@ public abstract class Estado {
 	
 	public abstract void manejarInscripcion (Usuario unUsuario, Excursion excursion);
 	
-	public String obtenerInformacion (Excursion excursion) {
-		return excursion.toString();
-	}
+	public abstract String obtenerInformacion (Excursion excursion);
+	
+
 }

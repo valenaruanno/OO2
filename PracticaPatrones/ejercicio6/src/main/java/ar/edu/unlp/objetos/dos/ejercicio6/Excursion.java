@@ -86,7 +86,7 @@ public class Excursion {
 	}
 	
 	public String obtenerInformacion () {
-		return this.estado.obtenerInformacion(this);
+		return this.toString() + this.estado.obtenerInformacion(this);
 	}
 	
 	public String emailDeUsuariosInscriptos() {

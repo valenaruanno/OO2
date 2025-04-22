@@ -11,4 +11,9 @@ public class Completa extends Estado{
 		excursion.agregarUsuarioListaDeEspera(unUsuario);
 	}
 
+	@Override
+	public String obtenerInformacion(Excursion excursion) {
+		return "";
+	}
+
 }

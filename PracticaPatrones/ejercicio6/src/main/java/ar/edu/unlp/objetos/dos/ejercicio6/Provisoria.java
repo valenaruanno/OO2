@@ -5,10 +5,8 @@ public class Provisoria extends Estado{
 		
 	}
 
-	@Override
 	public String obtenerInformacion(Excursion excursion) {
-		return super.obtenerInformacion(excursion) + 
-				"Usuarios faltantes para alcanzar el cupo minimo: " + 
+		return "Usuarios faltantes para alcanzar el cupo minimo: " + 
 				excursion.usuariosFaltantesCupoMinimo();
 	}
 

@@ -6,10 +6,8 @@ public class Definitiva extends Estado{
 		
 	}
 	
-	@Override
-	public String obtenerInformacion(Excursion excursion) {
-		return super.obtenerInformacion(excursion) + 
-				"Emails : " + excursion.emailDeUsuariosInscriptos() +
+	public String obtenerInformacion (Excursion excursion) {
+		return "Emails : " + excursion.emailDeUsuariosInscriptos() +
 				"Cantidad de usuarios faltantes para alcanzar el cupo maximo" + 
 				excursion.usuariosFaltantesCupoMaximo();
 	}
