@@ -23,7 +23,7 @@ public abstract class State {
 		return Duration.between(toDoItem.getInicio(), LocalDateTime.now());
 	}
 	
-	public void addComment (String comment, List<String> comments) {	
+	public void addComment (String comment, ToDoItem toDoItem) {	
 		comments.add(comment);
 	}
 }

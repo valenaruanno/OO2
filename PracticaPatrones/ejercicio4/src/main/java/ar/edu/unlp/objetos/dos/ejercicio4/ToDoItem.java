@@ -55,6 +55,6 @@ public class ToDoItem {
 	}
 	
 	public void addComment (String comment) {
-		this.state.addComment(comment, comments);
+		this.state.addComment(comment, this);
 	}
 }

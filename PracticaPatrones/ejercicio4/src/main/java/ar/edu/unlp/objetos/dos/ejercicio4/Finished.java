@@ -20,7 +20,7 @@ public class Finished extends State{
 		return Duration.between(toDoItem.getInicio(), toDoItem.getFin());
 	}
 	
-	public void addComment (String comment, List<String> comments) {	
+	public void addComment (String comment, ToDoItem) {	
 		
 	}
 }
