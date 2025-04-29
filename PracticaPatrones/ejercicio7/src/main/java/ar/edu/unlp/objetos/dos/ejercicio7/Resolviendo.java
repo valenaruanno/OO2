@@ -10,7 +10,7 @@ public class Resolviendo extends Estado{
 	@Override
 	public void setValor(Calculadora calculadora, double unValor) {
 		calculadora.setValorAcumulado(this.operacion.resolver(calculadora, unValor));
-		
 	}
+	
 
 }
