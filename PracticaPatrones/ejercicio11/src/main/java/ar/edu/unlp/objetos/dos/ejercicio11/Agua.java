@@ -3,10 +3,15 @@ package ar.edu.unlp.objetos.dos.ejercicio11;
 public class Agua extends Topografia {
 
 	@Override
-	public int proporcionAgua() {
+	public double proporcionAgua() {
 		return 1;
 	}
-
+	
+	@Override
+	public double proporcionTierra() {
+		return 1 - this.proporcionAgua();
+	}
+	
 	@Override
 	public boolean esIgual(Topografia topografia) {
 		return topografia.esIgualAgua();
@@ -28,8 +33,8 @@ public class Agua extends Topografia {
 	}
 
 	@Override
-	public int proporcionTierra() {
-		return 1 - this.proporcionAgua();
+	public boolean esIgualPantano() {
+		return false;
 	}
 
 }

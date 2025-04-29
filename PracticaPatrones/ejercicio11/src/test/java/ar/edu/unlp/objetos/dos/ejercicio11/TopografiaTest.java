@@ -14,6 +14,8 @@ public class TopografiaTest {
 	private Tierra tTierra2;
 	private Mixta tMixta;
 	private Mixta tMixta2;
+	private Pantano tPantano;
+	private Pantano tPantano2;
 	
 	@BeforeEach
 	public void setUp() {
@@ -31,43 +33,56 @@ public class TopografiaTest {
 		this.tMixta2.addTopografia(tTierra);
 		this.tMixta2.addTopografia(tAgua);
 		this.tMixta2.addTopografia(tTierra);
+		this.tPantano = new Pantano ();
+		this.tPantano2 = new Pantano();
 	}
 	
 	@Test
-	public void proporcionEnAgua() {
+	public void proporcionEnAguaTest() {
 		assertEquals(1,this.tAgua.proporcionAgua());
 		assertEquals(0,this.tAgua.proporcionTierra());
 	}
 	
 	@Test
-	public void proporcionEnTierra() {
+	public void proporcionEnTierraTest() {
 		assertEquals(0,this.tTierra.proporcionAgua());
 		assertEquals(1,this.tTierra.proporcionTierra());
 	}
 	
 	@Test
-	public void proporcionEnMixta() {
-		assertEquals(0.0,this.tMixta.proporcionAgua());
-		assertEquals(1.0,this.tMixta.proporcionTierra());
+	public void proporcionEnMixtaTest() {
+		assertEquals(0.5,this.tMixta.proporcionAgua());
+		assertEquals(0.5,this.tMixta.proporcionTierra());
 	}
 	
 	@Test
-	public void esIgualAgua() {
+	public void proporcionEnPantanoTest() {
+		assertEquals(0.7, this.tPantano.proporcionAgua());
+		assertEquals(0.3, this.tPantano.proporcionTierra());
+	}
+	
+	@Test
+	public void esIgualAguaTest() {
 		assertTrue(this.tAgua.esIgual(tAgua2));
 	}
 	
 	@Test
-	public void esIgualTierra() {
+	public void esIgualTierraTest() {
 		assertTrue(this.tTierra.esIgual(tTierra2));
 	}
 	
 	@Test
-	public void esIgualMixta() {
+	public void esIgualMixtaTest() {
 		assertTrue(this.tMixta.esIgual(tMixta2));
 		assertFalse(this.tMixta.esIgual(tAgua));
 		assertFalse(this.tMixta.esIgual(tTierra));
 		this.tMixta.deleteTopografia();
 		this.tMixta.addTopografia(tAgua);
 		assertFalse(this.tMixta.esIgual(tMixta2));
+	}
+	
+	@Test
+	public void esIgualPantanoTest() {
+		assertTrue(this.tPantano.esIgual(tPantano2));
 	}
 }

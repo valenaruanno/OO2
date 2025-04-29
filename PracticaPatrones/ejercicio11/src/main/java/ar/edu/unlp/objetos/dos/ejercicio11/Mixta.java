@@ -23,13 +23,9 @@ public class Mixta extends Topografia{
 		return topografias;
 	}
 
+	
 	@Override
-	public int proporcionAgua() {
-		return this.topografias.stream().mapToInt(t -> t.proporcionAgua()).sum() / 4;
-	}
-
-	@Override
-	public int proporcionTierra() {
+	public double proporcionTierra() {
 		return 1 - this.proporcionAgua();
 	}
 	
@@ -52,6 +48,16 @@ public class Mixta extends Topografia{
 	public boolean esIgualMixta(Mixta topografia) {
 		return java.util.stream.IntStream.range(0, 4)
 	            .allMatch(i -> this.topografias.get(i).esIgual(topografia.getTopografias().get(i)));
+	}
+
+	@Override
+	public boolean esIgualPantano() {
+		return false;
+	}
+
+	@Override
+	public double proporcionAgua() {
+		return this.topografias.stream().mapToDouble(t -> t.proporcionAgua()).sum() / 4;
 	}
 
 }
