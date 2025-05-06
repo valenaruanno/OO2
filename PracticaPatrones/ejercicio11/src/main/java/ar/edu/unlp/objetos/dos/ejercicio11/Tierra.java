@@ -8,16 +8,6 @@ public class Tierra extends Topografia{
 	}
 
 	@Override
-	public double proporcionTierra() {
-		return 1 - this.proporcionAgua();
-	}
-	
-	@Override
-	public boolean esIgual(Topografia topografia) {
-		return topografia.esIgualTierra();
-	}
-
-	@Override
 	public boolean esIgualAgua() {
 		return false;
 	}
@@ -35,6 +25,11 @@ public class Tierra extends Topografia{
 	@Override
 	public boolean esIgualPantano() {
 		return false;
+	}
+
+	@Override
+	public boolean equals(Topografia topografia) {
+		return topografia.esIgualTierra();
 	}
 
 }

@@ -13,11 +13,6 @@ public class Pantano extends Topografia{
 	}
 
 	@Override
-	public boolean esIgual (Topografia topografia) {
-		return topografia.esIgualPantano();
-	}
-
-	@Override
 	public boolean esIgualAgua() {
 		return false;
 	}
@@ -35,6 +30,11 @@ public class Pantano extends Topografia{
 	@Override
 	public boolean esIgualPantano() {
 		return true;
+	}
+
+	@Override
+	public boolean equals(Topografia topografia) {
+		return topografia.esIgualPantano();
 	}
 
 }
