@@ -1,0 +1,13 @@
+Evalúe cuál de los siguientes patrones mejor describe el diseño de los Filtros: TemplateMethod, Strategy, Decorator. 
+Para realizar la evaluación se sugiere contestar las siguientes preguntas aplicadas a cada uno de los patrones: 
+¿El objetivo del patrón se distingue en el diseño? Elabore en un párrafo.
+    Si, el patron Decorator permitiria tratar a todos los filtros como capas de la imagen que se van aplicando de forma dinamica.
+
+¿La estructura del proyecto coincide con la estructura y los participantes del patrón? Elabore en un párrafo.
+    Si, coincide. Existe una foto a la cual se le pueden aplicar distintos filtros dinamicamente. Estos lo que hacen es devolver la 
+    imagen que obtuvieron con su filtro aplicado. A su vez, el usuario debería poder elegir cualquier combinación de efectos, y en 
+    cualquier orden.
+
+En el caso que el patrón coincida, puede distinguir un “smell” o algo que se aleja del patrón presentado en el libro?
+    Si, teniendo los filtros en forma de herencia la solucion es inflexible ya que las responsabilidades de cada objeto se decide 
+    de forma estatica y no podriamos quitarlas.
