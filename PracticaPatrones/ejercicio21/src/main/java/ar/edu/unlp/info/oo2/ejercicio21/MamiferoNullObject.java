@@ -9,6 +9,10 @@ public class MamiferoNullObject extends Mamifero{
 		super(identificador, especie, fechaNacimiento);
 	}
 
+	public MamiferoNullObject() {
+		super();
+	}
+
 	@Override
 	public Mamifero getAbueloPaterno() {
 		return null;
@@ -32,6 +36,53 @@ public class MamiferoNullObject extends Mamifero{
 	@Override
 	public boolean tieneComoAncestroA(Mamifero mamifero) {
 		return false;
+	}
+
+	@Override
+	public String getIdentificador() {
+		return "";
+	}
+
+	@Override
+	public void setIdentificador(String identificador) {
+	}
+
+	@Override
+	public String getEspecie() {
+		return "";
+	}
+
+	@Override
+	public void setEspecie(String especie) {
+	}
+
+	@Override
+	public LocalDate getFechaNacimiento() {
+		return null;
+	}
+
+	@Override
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+	}
+
+	@Override
+	protected Mamifero getPadre() {
+		return null;
+	}
+
+	@Override
+	protected Mamifero getMadre() {
+		return null;
+	}
+
+	@Override
+	protected void setPadre(Mamifero padre) {
+		
+	}
+
+	@Override
+	protected void setMadre(Mamifero madre) {
+		
 	}
 
 }

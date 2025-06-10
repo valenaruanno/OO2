@@ -1,0 +1,21 @@
+may 31, 2025 9:10:29 A. M. ar.edu.unlp.oo1.ejercicio1.impl.WallPostImpl like
+WARNING: Cantidad de likes = 10
+may 31, 2025 9:10:29 A. M. ar.edu.unlp.oo1.ejercicio1.impl.WallPostImpl dislike
+WARNING: Cantidad de likes = 0
+may 31, 2025 9:11:38 A. M. ar.edu.unlp.oo1.ejercicio1.impl.WallPostImpl like
+WARNING: Cantidad de likes = 10
+may 31, 2025 9:11:50 A. M. ar.edu.unlp.oo1.ejercicio1.impl.WallPostImpl dislike
+WARNING: Cantidad de likes = 0
+[WARNING] CANTIDAD DE LIKES = 10
+[WARNING] CANTIDAD DE LIKES = 0
+[WARNING] CANTIDAD DE LIKES = 10
+[WARNING] CANTIDAD DE LIKES = 0
+[WARNING] CANTIDAD DE LIKES = 10
+[WARNING] CANTIDAD DE LIKES = 0
+[WARNING] CANTIDAD DE LIKES = 10
+[WARNING] CANTIDAD DE LIKES = 0
+[WARNING] CANTIDAD DE LIKES = 10
+[WARNING] CANTIDAD DE LIKES = 0
+[WARNING] CANTIDAD DE LIKES = 10
+[WARNING] CANTIDAD DE LIKES = 0
+{"level":"WARNING","message":"Cantidad de likes = 10"}{"level":"WARNING","message":"Cantidad de likes = 0"}{"level":"WARNING","message":"Cantidad de likes = 10"}{"level":"WARNING","message":"Cantidad de likes = 0"}{"level":"WARNING","message":"Cantidad de likes = 10"}{"level":"WARNING","message":"Cantidad de likes = 0"}

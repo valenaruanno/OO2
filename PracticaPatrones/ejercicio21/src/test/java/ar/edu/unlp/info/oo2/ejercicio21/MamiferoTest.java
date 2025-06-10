@@ -70,27 +70,25 @@ public class MamiferoTest {
 	@Test
 	void testEspecie() {
 		anonimo.setEspecie("Panthera leo");
-		assertEquals("Panthera leo", anonimo.getEspecie());
+		assertEquals("", anonimo.getEspecie());
 	}
 
 	@Test
 	void testIdentificador() {
 		anonimo.setIdentificador("Nala");
-		assertEquals("Nala", anonimo.getIdentificador());
+		assertEquals("", anonimo.getIdentificador());
 	}
 
 	@Test
 	void testMadre() {
 		anonimo.setMadre(alexa);
-		assertEquals(alexa, anonimo.getMadre());
-		assertNull(nala.getMadre());
+		assertNull(anonimo.getMadre());
 	}
 
 	@Test
 	void testPadre() {
 		anonimo.setPadre(mufasa);
-		assertEquals(mufasa, anonimo.getPadre());
-		assertNull(nala.getPadre());
+		assertNull(anonimo.getPadre());
 	}
 
 	@Test
@@ -110,10 +108,10 @@ public class MamiferoTest {
 	@Test
 	void testTieneComoAncestroAsimetrico() {
 		// Alice -> Aaron -> Anna -> Alexander
-		Mamifero alice = new MamiferoNullObject("Alice", "mamifero", LocalDate.of(2025, 01, 01));
-		Mamifero aaron = new MamiferoNullObject("Aaron", "mamifero", LocalDate.of(2025, 01, 01));
-		Mamifero anna = new MamiferoNullObject("Anna", "mamifero", LocalDate.of(2025, 01, 01));
-		Mamifero alexander = new MamiferoNullObject("Alexander", "mamifero", LocalDate.of(2025, 01, 01));
+		Mamifero alice = new MamiferoConcreto("Alice", "mamifero", LocalDate.of(2025, 01, 01));
+		Mamifero aaron = new MamiferoConcreto("Aaron", "mamifero", LocalDate.of(2025, 01, 01));
+		Mamifero anna = new MamiferoConcreto("Anna", "mamifero", LocalDate.of(2025, 01, 01));
+		Mamifero alexander = new MamiferoConcreto("Alexander", "mamifero", LocalDate.of(2025, 01, 01));
 
 		alice.setPadre(aaron);
 		aaron.setMadre(anna);

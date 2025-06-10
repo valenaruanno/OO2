@@ -13,7 +13,7 @@ public class Directorio extends Raiz{
 		this.contenido = new ArrayList<>();
 	}
 	
-	public int tamanioContenido() {
+	private int tamanioContenido() {
 		return this.contenido.stream().mapToInt(c -> c.tamanioTotalOcupado()).sum();
 	}
 	
@@ -49,8 +49,26 @@ public class Directorio extends Raiz{
 	}
 
 	@Override
-	public String listadoDeContenido() {
-		return this.getNombre() + this.contenido.stream().map(c -> c.listadoDeContenido());
+	public String listadoDeContenido(String path) {
+		String pathActual = path + this.getNombre() + "/";
+		return  pathActual + this.contenido.stream().map(c -> c.listadoDeContenido(pathActual));
+	}
+
+	@Override
+	public void addComponent(Raiz componente) {
+		this.contenido.add(componente);
+		
+	}
+
+	@Override
+	public void deleteComponent(Raiz componente) {
+		this.contenido.remove(componente);
+		
+	}
+
+	@Override
+	public List<Raiz> getChild() {
+		return this.contenido;
 	}
 
 }

@@ -3,9 +3,9 @@ package ar.edu.unlp.info.oo2.ejercicio12;
 import java.util.List;
 
 public class FileSystem {
-	private Raiz raiz;
+	private Directorio raiz;
 	
-	public FileSystem (Raiz raiz) {
+	public FileSystem (Directorio raiz) {
 		this.raiz = raiz;
 	}
 	
@@ -29,7 +29,7 @@ public class FileSystem {
 		return this.raiz.buscarTodos(nombre);
 	}
 	
-	public String listadoDeContenido() {
-		return this.raiz.listadoDeContenido();
+	public String listadoDeContenido(String path) {
+		return this.raiz.listadoDeContenido(path);
 	}
 }

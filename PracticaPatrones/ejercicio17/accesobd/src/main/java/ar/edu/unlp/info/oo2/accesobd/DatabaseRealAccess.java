@@ -1,6 +1,7 @@
 package ar.edu.unlp.info.oo2.accesobd;
 
 import java.util.Arrays;
+import java.util.logging.Logger;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;

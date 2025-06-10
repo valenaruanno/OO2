@@ -17,12 +17,12 @@ public class Archivo extends Raiz {
 
 	@Override
 	public Archivo archivoMasGrande() {
-		return null;
+		return this;
 	}
 
 	@Override
 	public Archivo archivoMasNuevo() {
-		return null;
+		return this;
 	}
 
 	@Override
@@ -36,8 +36,7 @@ public class Archivo extends Raiz {
 	}
 
 	@Override
-	public String listadoDeContenido() {
-		return null;
+	public String listadoDeContenido(String path) {
+		return path + this.getNombre() + "\n";
 	}
-
 }

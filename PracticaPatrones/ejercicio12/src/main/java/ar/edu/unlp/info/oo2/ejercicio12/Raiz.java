@@ -22,9 +22,20 @@ public abstract class Raiz {
 
 	public abstract List<Raiz> buscarTodos(String nombre);
 
-	public abstract String listadoDeContenido();
-
-
+	public abstract String listadoDeContenido(String path);
+	
+	public void addComponent(Raiz componente) {
+		
+	}
+	
+	public void deleteComponent(Raiz componente) {
+		
+	}
+	
+	public  List<Raiz> getChild(){
+		return null;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
